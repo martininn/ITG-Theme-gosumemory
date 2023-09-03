@@ -10,8 +10,15 @@ let bad = document.getElementById('50');
 let miss = document.getElementById('miss');
 let songLength = document.getElementById('songLength');
 let currentLength = document.getElementById('currentLength')
-let canvas = document.getElementById('canvas');
 let progress = document.getElementById('titleProgress');
+let canvas = document.getElementById('canvas');
+let ur = document.getElementById('ur');
+let songName = document.getElementById('songName');
+let artistName = document.getElementById('artistName');
+let mapsetMapper = document.getElementById('mapsetMapper');
+let mapDiff = document.getElementById('mapDiff');
+let mods = document.getElementById('mods');
+let multiplier = document.getElementById('multiplier');
 
 socket.onopen = () => console.log("Successfully Connected");
 socket.onclose = event => {
@@ -26,6 +33,7 @@ let tempTitle;
 let onepart;
 let seek;
 let fullTime;
+let tempInfo;
 
 socket.onmessage = event => {
     let data = JSON.parse(event.data)
@@ -41,11 +49,13 @@ socket.onmessage = event => {
         tempState = data.menu.state;
         if(tempState == 2){
             progress.style.opacity = 1
+            ur.style.opacity = 1
         } else {
             progress.style.opacity = 0
+            ur.style.opacity = 0
         }
     }
-
+    
     if(fullTime !== data.menu.bm.time.full){
         fullTime = data.menu.bm.time.full
     }
@@ -57,16 +67,25 @@ socket.onmessage = event => {
             progress.style.width = 98+'%'
         }
     }
-
-
+    
+    
     // TITLE
-    if(tempTitle !== '[' + data.menu.bm.stats.fullSR + ']' + ' ' + data.menu.bm.metadata.title + ' - ' + data.menu.bm.metadata.difficulty){
-        tempTitle = '[' + data.menu.bm.stats.fullSR + ']' + ' ' + data.menu.bm.metadata.title + ' - ' + data.menu.bm.metadata.difficulty;
+    if(tempTitle !== '[' + data.menu.bm.stats.fullSR + ']' + ' ' + data.menu.bm.metadata.title){
+        tempTitle = '[' + data.menu.bm.stats.fullSR + ']' + ' ' + data.menu.bm.metadata.title;
         title.innerHTML = tempTitle
     }
     
     //BPM
     bpm.innerHTML = `${data.menu.bm.stats.BPM.max}`;
+
+    //IF DT/NC MULTIPLIER
+    if((data.menu.mods.str).includes("DT")){
+        multiplier.innerHTML = "1.5x"
+    } else if((data.menu.mods.str).includes("NC")){
+        multiplier.innerHTML = "1.5x"
+    } else {
+        multiplier.innerHTML = ""
+    }
 
     //BG IMG
     if(tempImg !== data.menu.bm.path.full){
@@ -78,6 +97,9 @@ socket.onmessage = event => {
 
     let ctx = canvas.getContext('2d');
     ctx.drawImage(bg, 0,-17,150,100);
+
+    //UR
+    ur.innerHTML = `${Math.floor(data.gameplay.hits.unstableRate)}`
 
     //OFFSET CONVERT INTO TIME
     let currentTimeIntoSeconds = data.menu.bm.time.current / 1000;
@@ -151,6 +173,28 @@ socket.onmessage = event => {
 		miss.innerHTML = 0
 	}
 
-    //GAMESTATE (wip..?)
+    //GENERAL INFO DIV
     
+    if(data.menu.bm.metadata.titleOriginal == ''){
+        songName.innerHTML = `${data.menu.bm.metadata.title}`; 
+    } else {
+        songName.innerHTML = `${data.menu.bm.metadata.titleOriginal}`;
+    }
+    if(data.menu.bm.metadata.artistOriginal == ''){
+        artistName.innerHTML = `${data.menu.bm.metadata.artist}`; 
+    } else {
+        artistName.innerHTML = `${data.menu.bm.metadata.artistOriginal}`;
+    }
+    mapsetMapper.innerHTML = `${data.menu.bm.metadata.mapper}`;
+    mapDiff.innerHTML = `${data.menu.bm.metadata.difficulty}`;
+    mods.innerHTML = `${data.menu.mods.str}`;
+    
+    // A way of formatting the mods to have commas and shit that doesn't work, but it's a start
+    // function modsFormatter() {
+    //     data.menu.mods.str.forEach(function(item) {
+    //         item = `${item}, `
+    //     });
+    // }
+    
+
 }

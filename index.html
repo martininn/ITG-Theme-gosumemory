@@ -9,20 +9,18 @@
     <script src="deps/countUp.js"></script>
 </head>
 <body style="font-family: Akshar; color:white; background-color: black;">
-    <!-- SET TO WHITE BEFORE SAVING ^-->
+    <!-- Preferably, color should be white and no bg color when not debugging ^-->
     <div id="progressContainer" style="height: 25px; display:flex; justify-content: center;">
         <div id="innerProgressContainer" style="width: 97%; max-width: 97%;">
-            <div id="titleProgress" style="position:absolute; left:6px;background-color: rgb(52, 99, 251); font-family:Akshar;width: 0px; height: 25px">
+            <div id="titleProgress" style="position:absolute; left:5px;background-color: rgb(52, 99, 251); font-family:Akshar;width: 0px; height: 25px">
             </div>
         </div>
-        <div id="title" style="position:absolute;font-family:Akshar; border-style: solid; border-width:2px; display:flex; width:97.5%;justify-content: center;"></div>
+        <div id="title" style="position:absolute;font-family:Akshar; border-style: solid; border-width:2px; display:flex; width:97.5%;justify-content: center;overflow:hidden;white-space: nowrap;"></div>
     </div>
     <div style="display: flex; justify-content: center; font-size: 27px;" id="bpm"></div>
+    <div style="position: absolute; width: 100%; display: flex;justify-content: center; top: 60px; right: 0px; font-size: smaller;"id="multiplier"></div>
     <div class="test" style="font-family: Akshar; display:flex; flex-direction: row;">
     
-        
-        
-        
         <div style="display:flex;flex-direction: row; margin-left: 20px; margin-top: 20px; width: 200px;">
             <div id="statsContainer" style="margin-right: 15px; font-size: 30px;">
                 <div style="color:aqua; font-weight: bold;" id="300"></div>
@@ -45,16 +43,50 @@
             </canvas>
         </div>
     </div>
+    <!-- This one might be a bit weird on OBS because of position absolute. I think. -->
+    <div style="position: absolute; display: flex; justify-content: right; width: 70%; top: 200px; font-weight: bolder; font-size: larger;" id="ur"></div>
     <br/>
     <br/>
-    <div style="margin-left: 20px;">
-        <div id="currentLength"></div>
-        <div id="songLength"></div>
+    <div style="display:flex; flex-direction: row;">
+        <div style="margin-left: 20px;">
+            <div id="currentLength"></div>
+            <div id="songLength"></div>
+        </div>
+
+        <div style="width: 200px;overflow:hidden;white-space: nowrap; margin-left: auto; margin-right: 20px;">
+            <!-- <div id="songName"></div>
+            <div id="artistName"></div>
+            <div id="mapsetMapper"></div>
+            <div id="mods"></div> -->
+    
+            <div style="display:flex;justify-content: space-between;margin-bottom: 10px;" class="data-container">
+                <div class="label">Song</div>
+                <div style="margin-left: 10px;" id="songName"></div>
+            </div>
+            <div style="display:flex;justify-content: space-between;margin-bottom: 10px;" class="data-container">
+                <div class="label">Artist</div>
+                <div style="margin-left: 10px;" id="artistName"></div>
+            </div>
+            <div style="display:flex;justify-content: space-between;margin-bottom: 10px;" class="data-container">
+                <div class="label">Mapper</div>
+                <div style="margin-left: 10px;" id="mapsetMapper"></div>
+            </div>
+            <div style="display:flex;justify-content: space-between;margin-bottom: 10px;" class="data-container">
+                <div class="label">Diff</div>
+                <div style="margin-left: 10px;" id="mapDiff"></div>
+            </div>
+            <div style="display:flex;justify-content: space-between;margin-bottom: 10px;" class="data-container">
+                <div class="label">Mods</div>
+                <div id="mods"></div>
+            </div>
+            
+        </div>
     </div>
+    <br/>
     
     
 
     <script src="deps/reconnecting-websocket.min.js"></script>
-    <script src="index.js"></script>
 </body>
+<script src="index.js"></script>
 </html>
