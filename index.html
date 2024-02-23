@@ -6,31 +6,31 @@
     <title>ITG STYLE</title>
     <link href='https://fonts.googleapis.com/css?family=Akshar' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@700&display=swap" rel="stylesheet">
-    <style rel="stylesheet" href="index.css"></style>
+    <link rel="stylesheet" href="index.css"></link>
     <script src="deps/countUp.js"></script>
 </head>
 <!-- Preferably, color should be white and no bg color when not debugging ^-->
-<body style="font-family: Akshar; color:white;">
-    <div id="progressContainer" style="height: 25px; display:flex; justify-content: center;">
-        <div id="innerProgressContainer" style="width: 97%; max-width: 97%;">
-            <div id="titleProgress" style="position:absolute; left:5px;background-color: rgb(52, 99, 251); font-family:Akshar;width: 0px; height: 25px">
+<body style="font-family: Akshar; color:black;">
+    <div id="progressContainer">
+        <div id="innerProgressContainer">
+            <div id="titleProgress">
             </div>
         </div>
-        <div id="title" style="position:absolute;font-family:Akshar; border-style: solid; border-width:2px; display:flex; width:97.5%;justify-content: center;overflow:hidden;white-space: nowrap;"></div>
+        <div id="title"></div>
     </div>
-    <div style="display: flex; justify-content: center; font-size: 27px;" id="bpm"></div>
-    <div style="position: absolute; width: 100%; display: flex;justify-content: center; top: 60px; right: 0px; font-size: smaller;"id="multiplier"></div>
-    <div class="test" style="font-family: Akshar; display:flex; flex-direction: row;">
+    <div id="bpm"></div>
+    <div id="multiplier"></div>
+    <div class="test">
     
-        <div style="display:flex;flex-direction: row; margin-left: 20px; margin-top: 20px; width: 200px;">
-            <div id="statsContainer" style="margin-right: 15px; font-size: 27px; font-family:Fahkwang;">
+        <div class="hitReg">
+            <div id="statsContainer">
                 <div style="color:aqua;" id="300"></div>
                 <div style="color:rgb(112, 208, 124);" id="100"></div>
                 <div style="color: rgb(63,98,255);" id="50"></div>
                 <div style="color:red;" id="miss"></div>
             </div>
             
-            <div style="line-height: 36px; position:absolute; left: 125px;">
+            <div class="hitRegType">
                 <div>FANTASTIC</div>
                 <div>GREAT</div>
                 <div>BAD</div>
@@ -38,17 +38,17 @@
             </div>
             
         </div>
-        <div style="display:flex; margin-left: auto; margin-right: 20px; margin-top: 20px;flex-grow: 1; flex-shrink: 1; justify-content: right;">
-            <canvas id="canvas" width="150" height="65" style="max-width: 150px; max-height: 65px;">
+        <div class="canvasContainer">
+            <canvas id="canvas" width="150" height="65">
             <img src="" id="bg">
             </canvas>
         </div>
     </div>
     <!-- This one might be a bit weird on OBS because of position absolute. I think. -->
-    <div style="position: absolute; display: flex; justify-content: right; width: 70%; top: 200px; font-weight: bolder; font-size: larger;" id="ur"></div>
+    <div id="ur"></div>
     <br/>
     <br/>
-    <div style="display:flex; flex-direction: row;">
+    <div class="timeContainer">
         <div style="margin-left: 20px;">
             <div id="currentLength"></div>
             <div id="songLength"></div>
@@ -60,23 +60,23 @@
             <div id="mapsetMapper"></div>
             <div id="mods"></div> -->
     
-            <div style="display:flex;justify-content: space-between;margin-bottom: 10px;" class="data-container">
+            <div class="data-container">
                 <div class="label">Song</div>
                 <div style="margin-left: 10px;" id="songName"></div>
             </div>
-            <div style="display:flex;justify-content: space-between;margin-bottom: 10px;" class="data-container">
+            <div class="data-container">
                 <div class="label">Artist</div>
                 <div style="margin-left: 10px;" id="artistName"></div>
             </div>
-            <div style="display:flex;justify-content: space-between;margin-bottom: 10px;" class="data-container">
+            <div class="data-container">
                 <div class="label">Mapper</div>
                 <div style="margin-left: 10px;" id="mapsetMapper"></div>
             </div>
-            <div style="display:flex;justify-content: space-between;margin-bottom: 10px;" class="data-container">
+            <div class="data-container">
                 <div class="label">Diff</div>
                 <div style="margin-left: 10px;" id="mapDiff"></div>
             </div>
-            <div style="display:flex;justify-content: space-between;margin-bottom: 10px;" class="data-container">
+            <div class="data-container">
                 <div class="label">Mods</div>
                 <div id="mods"></div>
             </div>
