@@ -174,6 +174,7 @@ socket.onmessage = event => {
 	}
 
     //GENERAL INFO DIV
+    //"titleOriginal" is romanized metadata, which can be empty in certain scenarios - this checks for it
     
     if(data.menu.bm.metadata.titleOriginal == ''){
         songName.innerHTML = `${data.menu.bm.metadata.title}`; 
